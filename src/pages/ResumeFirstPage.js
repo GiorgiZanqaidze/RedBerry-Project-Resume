@@ -9,6 +9,21 @@ import "../css/app.css"
 export const ResumeFirstPage = () => {
  
 
+    const ToLandingPage = () => {
+        localStorage.clear()
+
+        setFormData({
+            "name": "",
+            "surname": "",
+            "email": "",
+            "phone_number": "",
+            "image": "",
+            "about_me": "",
+            "experiences": [],
+            "educations": []
+        })
+        navigate('/')
+    }
 
 
      const handleChange = (e) => {
