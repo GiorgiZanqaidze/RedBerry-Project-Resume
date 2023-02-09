@@ -1,0 +1,62 @@
+
+
+.two-input-container {
+    display: flex;
+    width: 200%;
+    justify-content: space-between;
+}
+
+.two-input-container .form-controller {
+    width: 40%;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 400;
+}
+.two-input-container .form-controller input{
+    height: 48px;
+    border: 1px solid #BCBCBC;
+    border-radius: 4px;
+    /* padding-left: 1em; */
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+}
+
+.second-page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.second-page-form .form-container {
+   border-bottom: 1px solid #C1C1C1;
+   padding-bottom: 2em;
+}
+
+.second-page-form .two-input-container {
+    width: 100%;
+}
+
+.second-page-form .form-container .two-input-container {
+    width: 200%;
+}
+
+.add-experience-btn button{
+    cursor: pointer;
+    border: none;
+    cursor: pointer;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.08em;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+

@@ -1,0 +1,91 @@
+
+:root {
+  /* colors */
+  --white-clr: white;
+  --black-clr: black;
+  --red-clr: #F93B1D;
+  
+  /* fonts */
+  --font-20: 20px;
+
+  /* background colors */
+  --bg-black: #1A1A1A;
+  --bg-dark-white: rgb(249, 249, 249);
+  --bg-white: white;
+  --bg-blue:#0E80BF;
+  --bg-dark-blue:#6B40E3;
+
+}
+
+
+/* global variables */
+
+/* colors */
+.white-font {
+  color: var(--white-clr);
+}
+
+.black-font {
+  color: var(--black-clr);
+}
+.red-font {
+  color: var(--red-clr);
+}
+
+/* border radius */
+.border-radius {
+  border-radius: 5px;
+}
+
+/* font size */
+.font-small {
+  font-size: var(--font-20);
+}
+
+/* background colors */
+.bg-black {
+  background-color: var(--bg-black);
+}
+.bg-dark-white {
+  background-color: var(--bg-dark-white);
+}
+.bg-white {
+  background-color: var(--bg-white);
+}
+.bg-blue {
+  background-color: var(--bg-blue);
+}
+.bg-dark-blue {
+  background-color: var(--bg-blue);
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+textarea {
+  font-size: 16px;
+  height: 120px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 10px;
+}
+
+select {
+  height: 48px;
+  background: #FFFFFF;
+  border: 1px solid #BCBCBC;
+  border-radius: 4px;
+  padding-left: 5px;
+}
+

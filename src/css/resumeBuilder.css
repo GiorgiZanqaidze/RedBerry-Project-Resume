@@ -1,0 +1,129 @@
+
+/* private page info */
+.img-div img {
+    height: 246px;
+
+}
+.img-div {
+    width: 246px;
+    height: 246px;
+    aspect-ratio: 1/1;
+    border-radius: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.private-info {
+    display: flex;
+    flex-shrink: initial;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.bottom-line {
+    border-bottom: 1px solid black;
+}
+.private-info .info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.private-info p{
+    max-width: 350px;
+    /* width: 300px; */
+    word-wrap: break-word;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+}
+.private-info p img{
+    margin-right: 5px;
+}
+
+.private-info h1 {
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 42px;
+}
+.private-info h2 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+/* experience section */
+
+.experiences, .educations {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: .6em;
+    margin-top: 1.4em;
+    padding-bottom: 20px;
+}
+
+.experiences .single, .educations .single {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-bottom: 20px;
+}
+
+.experiences .single h2, .educations .single h2{
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.experiences .single p, .educations .single p{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.experiences .single small, .educations .single small{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #919191;
+}
+
+/* logo */
+.resume-logo-container {
+    position: absolute;
+    bottom: 2em;
+    /* display: flex; */
+}
+
+.result-resume .resume-logo-container{
+    display: flex;
+    position: relative;
+    bottom: 0;
+}
+
+.pop-up {
+    position: absolute;
+    top: 0px;
+    right: -400px;
+    width: 364px;
+    min-height: 86px;
+    box-shadow: 0px 0px 10px 1px black;
+    display: flex;
+    padding: 10px;
+}
+.pop-up h1 {
+    font-size: 28px;
+}
+.pop-up img {
+    cursor: pointer;
+}
+
+.display-none {
+    display: none;
+}

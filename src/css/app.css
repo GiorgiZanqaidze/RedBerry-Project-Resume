@@ -1,0 +1,110 @@
+
+.app {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.main-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+
+.landing-page {
+    background-image: url('../images/landing-img.png');
+    padding: 1.5em;
+    min-height: 100vh;
+}
+
+.landing-page .header {
+    border-bottom: 1px solid red;
+    padding-bottom: 1em;
+}
+
+.header .logo {
+    width: 236px;
+}
+
+.route-resume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+.route-resume h1{
+    position: relative;
+    width: 464px;
+    padding: 0 auto;
+    text-align: center;
+    padding: 10px 0;
+    font-style: normal;
+    line-height: 24px;
+    padding: 15px 100px;
+    cursor: pointer;
+}
+.route-resume img {
+    position: absolute;
+    right: -200px;
+    bottom: -170px;
+    z-index: -10;
+}
+
+.side-paddings {
+    padding: 1em 3em;
+}
+
+
+
+
+
+/* -------------- resumes ---------------- */
+
+
+.resume-builder {
+    width: 40%;
+    max-width: 822px;
+    position: relative;
+}
+.single-part-resume {
+    width: 50%;
+    max-width: 1000px;
+    
+}
+.single-part-resume header {
+    display: flex;
+    gap: 1em;
+}
+
+.single-part-resume .info {
+    display: flex;
+    border-bottom: 1px solid black;
+}
+.single-part-resume header img{
+    width: 40px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.single-part-resume .info{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: red; */
+    width: 100%;
+    padding-right: 1em;
+    padding-left: 2em;
+}
+
+
+/* errors style */
+
+.two-input-container .form-controller input.error-input {
+    border: 1px solid red; 
+}
+
+input[type="text"].error-input {
+    border: 1px solid red; 
+}
+
+.error-input {
+    border: 1px solid red;
+}
