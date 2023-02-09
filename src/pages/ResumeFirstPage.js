@@ -7,6 +7,20 @@ import { useGlobalContext } from '../context'
 import "../css/app.css"
 
 export const ResumeFirstPage = () => {
+
+    const {formData, setFormData} = useGlobalContext()
+    const {name, surname, email, phone_number, about_me, image} = formData
+    const navigate = useNavigate()
+
+    const [errorsObj, setErrorsObj] = React.useState(
+        {
+        name: null,
+        surname: null,
+        image: null,
+        email: null,
+        phone_number: null
+        }
+    )
  
 
     const ToLandingPage = () => {
