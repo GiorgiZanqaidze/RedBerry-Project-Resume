@@ -21,6 +21,45 @@ export const ResumeFirstPage = () => {
         phone_number: null
         }
     )
+
+    const handleSubmit = (e) => {
+    e.preventDefault()
+
+    // name validation
+    if (!name || name.length < 2 || !/^[ა-ჰ]+$/.test(name)) {
+      setErrorsObj(prev => ({...prev, name: true}))
+    } else {
+      setErrorsObj(prev => ({...prev, name: false}))
+    }
+
+    // surname validation
+    if (!surname || surname.length < 2 || !/^[ა-ჰ]+$/.test(surname)) {
+      setErrorsObj(prev => ({...prev, surname: true}))
+    } else {
+      setErrorsObj(prev => ({...prev, surname: false}))
+    }
+    
+    // email validation
+    if (!/^[a-zA-Z0-9.]+@redberry.ge$/.test(email)) {
+      setErrorsObj(prev => ({...prev, email: true}))
+    } else {
+      setErrorsObj(prev => ({...prev, email: false}))
+    }
+
+    // image validation
+    if (!image) {
+      setErrorsObj(prev => ({...prev, image: true}))
+    } else {
+      setErrorsObj(prev => ({...prev, image: false}))
+    }
+
+    // phone number validation
+    if (!/^((\+)9955[0-9]{8})$/.test(phone_number)) {
+      setErrorsObj(prev => ({...prev, phone_number: true}))
+    } else {
+      setErrorsObj(prev => ({...prev, phone_number: false}))
+    }
+    }
  
 
     const ToLandingPage = () => {
@@ -78,7 +117,7 @@ export const ResumeFirstPage = () => {
               [name]: value
           }
       })
-  }
+    }
   
 
 
