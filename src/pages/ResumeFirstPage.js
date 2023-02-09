@@ -8,6 +8,48 @@ import "../css/app.css"
 
 export const ResumeFirstPage = () => {
  
+
+
+
+     const handleChange = (e) => {
+      const name = e.currentTarget.name
+      let value = e.currentTarget.value
+
+      // if input type is file
+      if (name === "image") {
+          const fileUrl = e.target.files[0];
+          // setImage2(fileUrl)
+          
+          const fr = new FileReader()
+          console.log(fileUrl)
+
+          // var data=(reader.result).split(',')[1];
+          // var binaryBlob = atob(data);
+          // console.log('Encoded Binary File String:', binaryBlob);
+          
+
+          // console.log(JSON.parse(localStorage.getItem(('image-file'))))
+          localStorage.setItem("image-name", fileUrl.name)
+
+          fr.addEventListener('load', () => {
+            const url = fr.result
+            localStorage.setItem('recent-image', url)
+
+            value = url
+          })
+          
+          fr.readAsDataURL(fileUrl)
+          value = URL.createObjectURL(fileUrl)
+
+      }   
+  
+      setFormData((prev) => {
+          return {
+              ...prev,
+              [name]: value
+          }
+      })
+  }
   
 
 
