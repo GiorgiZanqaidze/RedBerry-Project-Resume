@@ -89,7 +89,7 @@ export const ResumeFirstPage = () => {
           // setImage2(fileUrl)
           
           const fr = new FileReader()
-          console.log(fileUrl)
+        //   console.log(fileUrl)
 
           // var data=(reader.result).split(',')[1];
           // var binaryBlob = atob(data);

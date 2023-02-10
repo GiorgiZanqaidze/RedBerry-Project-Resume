@@ -14,7 +14,7 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route path='first_page' element={<ResumeFirstPage />} />
         <Route path='second_page' element={<ResumeSecondPage />} />
-        {/* <Route path='third_page' element={<ResumeThirdPage />} /> */}
+        <Route path='third_page' element={<ResumeThirdPage />} />
         {/* <Route path='result_resume' element={<ResultResume />} /> */}
         <Route path='*' element={<Error />} />
       </Routes>

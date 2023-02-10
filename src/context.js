@@ -5,7 +5,6 @@ const AppContext = React.createContext()
 
 
 const AppProvider = ({children}) => {
-    const [formData, setFormData] = React.useState([])
 
 
     // image url from local storage
@@ -31,6 +30,58 @@ const AppProvider = ({children}) => {
     } else {
         experiences = JSON.parse(localStorage.getItem(('experiences')))
     }
+
+    // experiences from local storage
+    let educations;
+    if (JSON.parse(localStorage.getItem(('educations'))) === null) {
+        educations = [
+            {
+              "institute": "",
+              "degree": "",
+              "due_date": "",
+              "description": "",
+              "degree_id": ""
+            }
+        ]
+    } else {
+        educations = JSON.parse(localStorage.getItem(('educations')))
+    }
+
+
+    // data from local storage
+    let data;
+    if (JSON.parse(localStorage.getItem("form-data"))) {
+        data = JSON.parse(localStorage.getItem("form-data"))
+    } else {
+        data = {
+            "name": "",
+            "surname": "",
+            "email": "",
+            "phone_number": "",
+            "image": image,
+            "about_me": "",
+            "experiences": [...experiences],
+            "educations": [...educations]
+        }
+    }
+
+    
+    const [formData, setFormData] = React.useState(data)
+  
+    React.useEffect(() => {
+      setFormData(prev => {
+        return {
+            ...prev,
+            image: image,
+        }
+      })
+    }, [image])
+
+
+
+  React.useEffect(() => {
+      localStorage.setItem('form-data', JSON.stringify(formData))
+  }, [formData])
 
   
 
