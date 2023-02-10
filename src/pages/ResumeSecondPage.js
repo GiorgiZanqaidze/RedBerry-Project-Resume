@@ -9,13 +9,12 @@ import '../css/secondPage.css'
 
 export const ResumeSecondPage = () => {
 
-    const { setFormData, formData} = useGlobalContext()
-    const {experiences} = formData
 
+    // navigations ************** 
     const navigate = useNavigate()
     const ToLandingPage = () => {
         localStorage.clear()
-
+        
         setFormData({
             "name": "",
             "surname": "",
@@ -32,7 +31,24 @@ export const ResumeSecondPage = () => {
         e.preventDefault()
         navigate('/first_page')
     }
+    // navigations ************** ^
 
+
+    const { setFormData, formData} = useGlobalContext()
+    const {experiences} = formData
+
+    let errors;
+    if (JSON.parse(localStorage.getItem(('experiences-errors')))) {
+        errors = JSON.parse(localStorage.getItem(('experiences-errors')))
+    } else {
+        errors = [{
+        positionErr: null,
+        employerErr: null,
+        start_dateErr: null,
+        due_dateErr: null,
+        descriptionErr: null
+        }]
+    }
     
 
     const handleChangeInput = (index, event) => {
