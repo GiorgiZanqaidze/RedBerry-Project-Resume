@@ -81,6 +81,21 @@ export const ResumeThirdPage = () => {
 
   const [errorsArr, setErrorsArr] = useState(errors)
 
+  let defaultArr;
+  if (!educations || educations.length < 1) {
+    defaultArr = [
+      {
+        "degree": "",
+        "due_date": "",
+        "description": "",
+        "degree_id": "",
+        "institute": ""
+      }
+    ]
+  } else {
+    defaultArr = [...educations]
+  }
+
   
 
   return (
