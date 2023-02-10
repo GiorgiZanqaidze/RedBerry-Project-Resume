@@ -27,10 +27,29 @@ export const ResumeSecondPage = () => {
         })
         navigate('/')
     }
-    
+
     const toFirstPage = (e) => {
         e.preventDefault()
         navigate('/first_page')
+    }
+
+    
+
+    const handleChangeInput = (index, event) => {
+        const name = event.target.name
+        const value = event.target.value
+
+        let data = [...experienceArray]
+
+        data[index][name] = value
+
+        setFormData((prev) => {
+        return (
+            {...prev, experiences: [...experienceArray]}
+        )
+        })
+        
+        localStorage.setItem('experiences', [JSON.stringify(experienceArray)])
     }
 
 
