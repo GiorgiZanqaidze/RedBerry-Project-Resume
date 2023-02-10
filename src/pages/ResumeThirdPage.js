@@ -50,26 +50,8 @@ export const ResumeThirdPage = () => {
       .then((blob) => {
           let newFile= new File([blob], imageName, { type: "image.jpg" });
 
-          // console.log(JSON.stringify({newFile}))
-          console.log(newFile)
+          setValidImg(newFile)
 
-          // console.log(blob.size)
-          console.log({
-              lastModified: newFile.lastModified,
-              name: newFile.name,
-              size: newFile.size,
-              type: newFile.type,
-              webkitRelativePath: newFile.webkitRelativePath
-          })
-
-          
-          setValidImg({
-              lastModified: newFile.lastModified,
-              name: newFile.name,
-              size: newFile.size,
-              type: newFile.type,
-              webkitRelativePath: newFile.webkitRelativePath
-          })
         })
     }, [])
 
@@ -79,10 +61,10 @@ export const ResumeThirdPage = () => {
     errors = JSON.parse(localStorage.getItem(('educations-errors')))
   } else {
     errors = [{
-              "instituteErr": false,
-              "degreeErr": false,
-              "due_dateErr": false,
-              "descriptionErr": false,
+              "instituteErr": null,
+              "degreeErr": null,
+              "due_dateErr": null,
+              "descriptionErr": null,
             }]
   }
 
@@ -123,10 +105,10 @@ export const ResumeThirdPage = () => {
 
     setErrorsArr((prev) => {
         return ([...prev, {
-        "instituteErr": false,
-        "degreeErr": false,
-        "due_dateErr": false,
-        "descriptionErr": false,
+        "instituteErr": null,
+        "degreeErr": null,
+        "due_dateErr": null,
+        "descriptionErr": null,
       }])
     })
   }
@@ -261,7 +243,7 @@ export const ResumeThirdPage = () => {
         }
         
         setFormValidArr([...validArray])
-        if (!formValidArr.includes(true) && formValidArr.length > 0) {
+        if (!validArray.includes(true) && validArray.length > 0) {
 
             // filter data not to include empty values
             let validEducationData = [...educations]
@@ -295,14 +277,6 @@ export const ResumeThirdPage = () => {
 
                 }
                 
-
-                // await fetch("https://resume.redberryinternship.ge/api/cvs", {
-                //   method: "POST",
-                //   headers: { "Content-Type": "application/json", "Accept": "application/json"},
-                //   body: JSON.stringify({name, surname, email, phone_number, about_me, experiences, educations, image: validImg})
-                // })
-                // .then((res) => console.log(res))
-                // .catch(err => console.log(err))
             }
 
             postData()
