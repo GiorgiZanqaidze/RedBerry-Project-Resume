@@ -308,7 +308,7 @@ export const ResumeThirdPage = () => {
             postData()
 
             
-            // navigate('/result_resume')
+            navigate('/result_resume')
         }
     }
 
