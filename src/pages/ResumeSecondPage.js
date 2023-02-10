@@ -37,18 +37,21 @@ export const ResumeSecondPage = () => {
     const { setFormData, formData} = useGlobalContext()
     const {experiences} = formData
 
+    // errors array from local storage
     let errors;
     if (JSON.parse(localStorage.getItem(('experiences-errors')))) {
         errors = JSON.parse(localStorage.getItem(('experiences-errors')))
     } else {
         errors = [{
-        positionErr: null,
-        employerErr: null,
-        start_dateErr: null,
-        due_dateErr: null,
-        descriptionErr: null
+            positionErr: null,
+            employerErr: null,
+            start_dateErr: null,
+            due_dateErr: null,
+            descriptionErr: null
         }]
     }
+    const [errorsArr, setErrorsArr] = useState(errors)
+    // errors array from local storage
     
 
     const handleChangeInput = (index, event) => {
