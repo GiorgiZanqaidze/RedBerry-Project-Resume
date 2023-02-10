@@ -207,6 +207,21 @@ export const ResumeSecondPage = () => {
       localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
   }, [errorsArr])
 
+  // navigate
+  React.useEffect(() => {
+    if (!formValidArr.includes(true) && formValidArr.length > 0) {
+
+      // filter data not to include empty values
+      let validData = [...experiences]
+      validData = validData.filter(item => item.position !== "")
+      localStorage.setItem('experiences', JSON.stringify(validData))
+      
+      navigate('/third_page')
+    } 
+
+  }, [formValidArr, navigate, experiences, setExperienceArray])
+
+
 
   
   return (
