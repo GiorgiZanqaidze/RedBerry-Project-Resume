@@ -88,7 +88,7 @@ export const ResumeThirdPage = () => {
 
   const [errorsArr, setErrorsArr] = useState(errors)
 
-
+//   initialize default value for educations array
   let defaultArr;
   if (!educations || educations.length < 1) {
     defaultArr = [
@@ -104,6 +104,8 @@ export const ResumeThirdPage = () => {
     defaultArr = [...educations]
   }
   const [educationsArray, setEducationsArray] = React.useState(defaultArr)
+
+
 
 //   data for options input
   const [optionValues, setOptionValues] = React.useState([])
@@ -147,6 +149,18 @@ const handleChangeInput = (index, event) => {
     })
       
     localStorage.setItem('educations', [JSON.stringify(educationsArray)])
+  }
+
+
+//   handle the submit to validate inputs and set errors
+const handleSubmit = (e) => {
+    e.preventDefault()
+    
+
+      
+      navigate('/result_resume')
+    }
+
   }
   
 
