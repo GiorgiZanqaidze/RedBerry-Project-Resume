@@ -230,7 +230,7 @@ const handleSubmit = (e) => {
       navigate('/result_resume')
     }
 
-  }
+  
   
 
   return (
