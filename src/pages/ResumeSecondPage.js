@@ -118,6 +118,78 @@ export const ResumeSecondPage = () => {
     const handleSubmit = (e) => {
     e.preventDefault()
 
+    experienceArray.forEach((experience, index) => {
+      const {position, employer, start_date, due_date, description} = experience
+      const valid = Object.values(experience)
+
+      const validOtherForms = valid.every((str) => str === "")
+
+
+      if (index === 0 || !validOtherForms) {
+
+        if (position.trim().length < 2) {
+          let newArr = [...errorsArr]
+          newArr[index].positionErr = true
+          setErrorsArr(newArr)
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].positionErr = false
+          setErrorsArr(newArr)
+        }
+
+        if (employer.trim().length < 2) {
+          let newArr = [...errorsArr]
+          newArr[index].employerErr = true
+          setErrorsArr(newArr)
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].employerErr = false
+          setErrorsArr(newArr)
+        }
+        
+        if (!start_date) {
+          let newArr = [...errorsArr]
+          newArr[index].start_dateErr = true
+          setErrorsArr(newArr)
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].start_dateErr = false
+          setErrorsArr(newArr)
+        }
+        
+        if (!due_date) {
+          let newArr = [...errorsArr]
+          newArr[index].due_dateErr = true
+          setErrorsArr(newArr)
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].due_dateErr = false
+          setErrorsArr(newArr)
+        }
+        
+        if (description.trim().length < 2) {
+          let newArr = [...errorsArr]
+          newArr[index].descriptionErr = true
+          setErrorsArr(newArr)
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].descriptionErr = false
+          setErrorsArr(newArr)
+        }
+      } else if ((index !== 0 && validOtherForms)) {
+        let newArr = [...errorsArr]
+        newArr[index] = {
+          positionErr: false,
+          employerErr: false,
+          start_dateErr: false,
+          due_dateErr: false,
+          descriptionErr: false
+        }
+        setErrorsArr(newArr)
+        localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
+      }
+    })
+
 
     
     }
