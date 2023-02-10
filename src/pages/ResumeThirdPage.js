@@ -113,6 +113,34 @@ export const ResumeThirdPage = () => {
     options() 
   }, [])
 
+
+//   change input on every input changes
+const handleChangeInput = (index, event) => {
+    const name = event.target.name
+    const value = event.target.value
+    let data = [...educationsArray]
+    
+    if (name === "degree") {
+      let id;
+      optionValues.forEach((item) => {
+        if (item.title === event.target.value) {
+          id = item.id
+        }
+      })
+      data[index].degree_id = id
+      data[index].degree = value
+    } else {
+      data[index][name] = value
+    }
+
+    setFormData((prev) => {
+      return (
+        {...prev, educations: [...educationsArray]}
+      )
+    })
+      
+    localStorage.setItem('educations', [JSON.stringify(educationsArray)])
+  }
   
 
   return (
