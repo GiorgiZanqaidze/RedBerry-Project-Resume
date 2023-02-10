@@ -19,28 +19,35 @@ export const ResumeThirdPage = () => {
 
   const imageName = localStorage.getItem('image-name')
 
-  const navigate = useNavigate()
-  const ToLandingPage = () => {
+    //   navigations **********
+    const navigate = useNavigate()
+    const ToLandingPage = () => {
 
-      localStorage.clear()
-      
-      setFormData({
-          "name": "",
-          "surname": "",
-          "email": "",
-          "phone_number": "",
-          "image": "",
-          "about_me": "",
-          "experiences": [],
-          "educations": []
-        })
-        navigate('/')
+        localStorage.clear()
+        
+        setFormData({
+            "name": "",
+            "surname": "",
+            "email": "",
+            "phone_number": "",
+            "image": "",
+            "about_me": "",
+            "experiences": [],
+            "educations": []
+            })
+            navigate('/')
+    }
+
+    const toSecondPage = (e) => {
+    e.preventDefault()
+    navigate('/second_page')
   }
+  //   navigations ********** ^^
   
   React.useEffect(() => {
-    fetch(image)
-        .then((res) => res.blob())
-        .then((blob) => {
+      fetch(image)
+      .then((res) => res.blob())
+      .then((blob) => {
           let newFile= new File([blob], imageName, { type: "image.jpg" });
 
           // console.log(JSON.stringify({newFile}))
