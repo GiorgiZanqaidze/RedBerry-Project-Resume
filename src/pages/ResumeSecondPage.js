@@ -97,7 +97,7 @@ export const ResumeSecondPage = () => {
   }
 
     
-
+    const [formValidArr, setFormValidArr] = useState([])
     const handleChangeInput = (index, event) => {
         const name = event.target.name
         const value = event.target.value
@@ -116,83 +116,96 @@ export const ResumeSecondPage = () => {
     }
 
     const handleSubmit = (e) => {
-    e.preventDefault()
+        e.preventDefault()
 
-    experienceArray.forEach((experience, index) => {
-      const {position, employer, start_date, due_date, description} = experience
-      const valid = Object.values(experience)
+        experienceArray.forEach((experience, index) => {
+        const {position, employer, start_date, due_date, description} = experience
+        const valid = Object.values(experience)
 
-      const validOtherForms = valid.every((str) => str === "")
+        const validOtherForms = valid.every((str) => str === "")
 
 
-      if (index === 0 || !validOtherForms) {
+        if (index === 0 || !validOtherForms) {
 
-        if (position.trim().length < 2) {
-          let newArr = [...errorsArr]
-          newArr[index].positionErr = true
-          setErrorsArr(newArr)
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].positionErr = false
-          setErrorsArr(newArr)
+            if (position.trim().length < 2) {
+            let newArr = [...errorsArr]
+            newArr[index].positionErr = true
+            setErrorsArr(newArr)
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].positionErr = false
+            setErrorsArr(newArr)
+            }
+
+            if (employer.trim().length < 2) {
+            let newArr = [...errorsArr]
+            newArr[index].employerErr = true
+            setErrorsArr(newArr)
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].employerErr = false
+            setErrorsArr(newArr)
+            }
+            
+            if (!start_date) {
+            let newArr = [...errorsArr]
+            newArr[index].start_dateErr = true
+            setErrorsArr(newArr)
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].start_dateErr = false
+            setErrorsArr(newArr)
+            }
+            
+            if (!due_date) {
+            let newArr = [...errorsArr]
+            newArr[index].due_dateErr = true
+            setErrorsArr(newArr)
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].due_dateErr = false
+            setErrorsArr(newArr)
+            }
+            
+            if (description.trim().length < 2) {
+            let newArr = [...errorsArr]
+            newArr[index].descriptionErr = true
+            setErrorsArr(newArr)
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].descriptionErr = false
+            setErrorsArr(newArr)
+            }
+        } else if ((index !== 0 && validOtherForms)) {
+            let newArr = [...errorsArr]
+            newArr[index] = {
+                positionErr: false,
+                employerErr: false,
+                start_dateErr: false,
+                due_dateErr: false,
+                descriptionErr: false
+            }
+            setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
+        }
+      })
+      let validArray = []
+
+      for (let i = 0; i < errorsArr.length; i++) {
+       const objToArray = Object.values(errorsArr[i])
+           for (let j = 0; j < objToArray.length; j++) {
+           validArray.push(objToArray[j])
+          }
         }
 
-        if (employer.trim().length < 2) {
-          let newArr = [...errorsArr]
-          newArr[index].employerErr = true
-          setErrorsArr(newArr)
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].employerErr = false
-          setErrorsArr(newArr)
-        }
-        
-        if (!start_date) {
-          let newArr = [...errorsArr]
-          newArr[index].start_dateErr = true
-          setErrorsArr(newArr)
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].start_dateErr = false
-          setErrorsArr(newArr)
-        }
-        
-        if (!due_date) {
-          let newArr = [...errorsArr]
-          newArr[index].due_dateErr = true
-          setErrorsArr(newArr)
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].due_dateErr = false
-          setErrorsArr(newArr)
-        }
-        
-        if (description.trim().length < 2) {
-          let newArr = [...errorsArr]
-          newArr[index].descriptionErr = true
-          setErrorsArr(newArr)
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].descriptionErr = false
-          setErrorsArr(newArr)
-        }
-      } else if ((index !== 0 && validOtherForms)) {
-        let newArr = [...errorsArr]
-        newArr[index] = {
-          positionErr: false,
-          employerErr: false,
-          start_dateErr: false,
-          due_dateErr: false,
-          descriptionErr: false
-        }
-        setErrorsArr(newArr)
-        localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
-      }
-    })
+        setFormValidArr([...validArray])
 
-
-    
     }
+
+    // add errors to local storage
+    React.useEffect(() => {
+      localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
+  }, [errorsArr])
 
 
   
