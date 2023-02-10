@@ -27,6 +27,11 @@ export const ResumeSecondPage = () => {
         })
         navigate('/')
     }
+    
+    const toFirstPage = (e) => {
+        e.preventDefault()
+        navigate('/first_page')
+    }
 
 
   
