@@ -52,6 +52,27 @@ export const ResumeSecondPage = () => {
     }
     const [errorsArr, setErrorsArr] = useState(errors)
     // errors array from local storage
+
+    // default experience array
+    let defaultArr;
+    if (experiences.length < 1) {
+        defaultArr = [
+        {
+            "position": "",
+            "employer": "",
+            "start_date": "",
+            "due_date": "",
+            "description": ""
+        }
+        ]
+    } else {
+        defaultArr = [...experiences]
+    }
+    const [experienceArray, setExperienceArray] = useState(defaultArr)
+    // default experience array
+
+
+
     
 
     const handleChangeInput = (index, event) => {
