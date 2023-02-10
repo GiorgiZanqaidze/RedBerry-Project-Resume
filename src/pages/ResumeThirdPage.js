@@ -19,7 +19,7 @@ export const ResumeThirdPage = () => {
 
   const imageName = localStorage.getItem('image-name')
 
-   const navigate = useNavigate()
+  const navigate = useNavigate()
   const ToLandingPage = () => {
 
       localStorage.clear()
@@ -64,7 +64,22 @@ export const ResumeThirdPage = () => {
               webkitRelativePath: newFile.webkitRelativePath
           })
         })
-      }, [])
+    }, [])
+
+
+     let errors;
+  if (JSON.parse(localStorage.getItem(('educations-errors')))) {
+    errors = JSON.parse(localStorage.getItem(('educations-errors')))
+  } else {
+    errors = [{
+              "instituteErr": false,
+              "degreeErr": false,
+              "due_dateErr": false,
+              "descriptionErr": false,
+            }]
+  }
+
+  const [errorsArr, setErrorsArr] = useState(errors)
 
   
 
