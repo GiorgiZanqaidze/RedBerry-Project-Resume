@@ -17,6 +17,37 @@ export const ResumeThirdPage = () => {
 
   const [validImg, setValidImg] = useState(null)
 
+  const imageName = localStorage.getItem('image-name')
+  
+  React.useEffect(() => {
+    fetch(image)
+        .then((res) => res.blob())
+        .then((blob) => {
+          let newFile= new File([blob], imageName, { type: "image.jpg" });
+
+          // console.log(JSON.stringify({newFile}))
+          console.log(newFile)
+
+          // console.log(blob.size)
+          console.log({
+              lastModified: newFile.lastModified,
+              name: newFile.name,
+              size: newFile.size,
+              type: newFile.type,
+              webkitRelativePath: newFile.webkitRelativePath
+          })
+
+          
+          setValidImg({
+              lastModified: newFile.lastModified,
+              name: newFile.name,
+              size: newFile.size,
+              type: newFile.type,
+              webkitRelativePath: newFile.webkitRelativePath
+          })
+        })
+      }, [])
+
   
 
   return (
