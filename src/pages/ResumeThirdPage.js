@@ -155,6 +155,75 @@ const handleChangeInput = (index, event) => {
 //   handle the submit to validate inputs and set errors
 const handleSubmit = (e) => {
     e.preventDefault()
+
+    educations.forEach((education, index) => {
+      const { degree, due_date,  description, institute } = education
+      const valid = Object.values(education)
+
+      const validOtherForms = valid.every((str) => str === "" || str === undefined)
+
+
+      if (index === 0 || !validOtherForms) {
+
+        if (degree === "") {
+          let newArr = [...errorsArr]
+          newArr[index].degreeErr = true
+          setErrorsArr(newArr)
+          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].degreeErr = false
+          setErrorsArr(newArr)
+          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        }
+
+        if (due_date.length < 2) {
+          let newArr = [...errorsArr]
+          newArr[index].due_dateErr = true
+          setErrorsArr(newArr)
+          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].due_dateErr = false
+          setErrorsArr(newArr)
+          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        }
+        
+        if (institute.trim().length < 2) {
+          let newArr = [...errorsArr]
+          newArr[index].instituteErr = true
+          setErrorsArr(newArr)
+          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].instituteErr = false
+          setErrorsArr(newArr)
+          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        }
+        
+        if (description.trim().length < 2) {
+          let newArr = [...errorsArr]
+          newArr[index].descriptionErr = true
+          setErrorsArr(newArr)
+          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        } else {
+          let newArr = [...errorsArr]
+          newArr[index].descriptionErr = false
+          setErrorsArr(newArr)
+          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        }
+      } else if ((index !== 0 && validOtherForms)) {
+        let newArr = [...errorsArr]
+        newArr[index] = {
+              "instituteErr": false,
+              "degreeErr": false,
+              "due_dateErr": false,
+              "descriptionErr": false,
+            }
+        setErrorsArr(newArr)
+        localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+      }
+    })
     
 
       
