@@ -72,6 +72,29 @@ export const ResumeSecondPage = () => {
     // default experience array
 
 
+    const addField = (e) => {
+    e.preventDefault()
+    
+    setExperienceArray((prev) => {
+      return ([...prev, {
+        "position": "",
+        "employer": "",
+        "start_date": "",
+        "due_date": "",
+        "description": ""
+      }])
+    })
+
+    setErrorsArr((prev) => {
+        return ([...prev, {
+        positionErr: null,
+        employerErr: null,
+        start_dateErr: null,
+        due_dateErr: null,
+        descriptionErr: null
+      }])
+    })
+  }
 
     
 
