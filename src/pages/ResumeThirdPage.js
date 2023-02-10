@@ -81,6 +81,7 @@ export const ResumeThirdPage = () => {
 
   const [errorsArr, setErrorsArr] = useState(errors)
 
+
   let defaultArr;
   if (!educations || educations.length < 1) {
     defaultArr = [
@@ -95,6 +96,22 @@ export const ResumeThirdPage = () => {
   } else {
     defaultArr = [...educations]
   }
+  const [educationsArray, setEducationsArray] = React.useState(defaultArr)
+
+//   data for options input
+  const [optionValues, setOptionValues] = React.useState([])
+  React.useEffect(() => {
+    const options =  () => {
+      axios.get('https://resume.redberryinternship.ge/api/degrees')
+      .then(res => {
+        setOptionValues(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
+    options() 
+  }, [])
 
   
 
