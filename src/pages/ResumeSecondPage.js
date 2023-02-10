@@ -9,9 +9,26 @@ import '../css/secondPage.css'
 
 export const ResumeSecondPage = () => {
 
+    const { setFormData, formData} = useGlobalContext()
+    const {experiences} = formData
+
+    const navigate = useNavigate()
+    const ToLandingPage = () => {
+        localStorage.clear()
+
+        setFormData({
+            "name": "",
+            "surname": "",
+            "email": "",
+            "phone_number": "",
+            "image": "",
+            "about_me": "",
+            "experiences": []
+        })
+        navigate('/')
+    }
 
 
-    
   
   return (
     <div className='main-page'>
