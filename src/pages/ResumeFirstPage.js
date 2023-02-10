@@ -6,6 +6,8 @@ import '../css/firstPage.css'
 import { useGlobalContext } from '../context'
 import "../css/app.css"
 
+import {showIcon} from "../functions/showIcon"
+
 export const ResumeFirstPage = () => {
 
     const {formData, setFormData} = useGlobalContext()
@@ -145,17 +147,20 @@ export const ResumeFirstPage = () => {
             <div className='form-controller name'>
                 <label htmlFor='name'>სახელი</label>
                 <input type="text" name='name' id="name" placeholder='ანზორ' onChange={handleChange} value={name} className={`${errorsObj.name && "error-input"}`} />
+                {showIcon(errorsObj.name)}
                 <p className='alert'>მინიმუმ 2 ასო, ქართული ასოები</p>
             </div>
             <div className='form-controller last-name'>
                 <label htmlFor='surname' >გვარი</label>
                 <input type="text" name='surname' id="surname" placeholder='მუმლაძე' onChange={handleChange} value={surname} className={`${errorsObj.surname && "error-input"}`}/>
+                {showIcon(errorsObj.surname)}
                 <p className='alert'>მინიმუმ 2 ასო, ქართული ასოები</p>
             </div>
           </div>
           <div className='form-controller grit-item '>
               <label htmlFor='image'className='file-control' >პირადი ფოტოს ატვირთვა <span className='bg-blue white-font' >ატვირთვა</span></label>
               <input type="file" name='image' id="image" accept='image/png, image/jpeg' placeholder='მუმლაძე' style={{display:"none"}}  onChange={handleChange}/>
+              {showIcon(errorsObj.image)}
           </div>
           <div className='form-controller grit-item width-100'>
               <label htmlFor='about_me' >ჩემ შესახებ (არასავალდებულო)</label>
@@ -164,11 +169,13 @@ export const ResumeFirstPage = () => {
           <div className='form-controller grit-item width-100'>
               <label htmlFor='email' >ელ.ფოსტა</label>
               <input type="text" name='email' id="email" placeholder='anzor666@redberry.ge' onChange={handleChange} value={email} className={`${errorsObj.email && "error-input"} width-100 `}/>
+              {showIcon(errorsObj.email)}
               <p className='alert'>უნდა მთავრდებოდეს @redberry.ge-ით</p>
           </div>
           <div className='form-controller grit-item width-100'>
               <label htmlFor='phone_number' >მობილურის ნომერი</label>
               <input type="text" name='phone_number' id="phone_number" placeholder='+995 551 12 34 56' onChange={handleChange} value={phone_number} className={`${errorsObj.phone_number && "error-input"} width-100 `}/>
+              {showIcon(errorsObj.phone_number)}
               <p className='alert'>უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>
           </div>
           <div className='button-container'>
