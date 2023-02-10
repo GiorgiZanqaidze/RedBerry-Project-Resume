@@ -74,7 +74,7 @@ export const ResumeThirdPage = () => {
     }, [])
 
 
-     let errors;
+  let errors;
   if (JSON.parse(localStorage.getItem(('educations-errors')))) {
     errors = JSON.parse(localStorage.getItem(('educations-errors')))
   } else {
@@ -107,7 +107,33 @@ export const ResumeThirdPage = () => {
 
 
 
-//   data for options input
+//   add errors and educations 
+  const addField = (e) => {
+    e.preventDefault()
+
+    setEducationsArray((prev) => {
+      return ([...prev, {
+        "institute": "",
+        "degree": "",
+        "due_date": "",
+        "description": "",
+        "degree_id": ""
+      }])
+    })
+
+    setErrorsArr((prev) => {
+        return ([...prev, {
+        "instituteErr": false,
+        "degreeErr": false,
+        "due_dateErr": false,
+        "descriptionErr": false,
+      }])
+    })
+  }
+
+
+
+  //   data for options input
   const [optionValues, setOptionValues] = React.useState([])
   React.useEffect(() => {
     const options =  () => {
@@ -123,7 +149,7 @@ export const ResumeThirdPage = () => {
   }, [])
 
 
-//   change input on every input changes
+     //   change input on every input changes
     const handleChangeInput = (index, event) => {
         const name = event.target.name
         const value = event.target.value
