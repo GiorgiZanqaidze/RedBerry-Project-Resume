@@ -124,121 +124,166 @@ export const ResumeThirdPage = () => {
 
 
 //   change input on every input changes
-const handleChangeInput = (index, event) => {
-    const name = event.target.name
-    const value = event.target.value
-    let data = [...educationsArray]
-    
-    if (name === "degree") {
-      let id;
-      optionValues.forEach((item) => {
-        if (item.title === event.target.value) {
-          id = item.id
-        }
-      })
-      data[index].degree_id = id
-      data[index].degree = value
-    } else {
-      data[index][name] = value
-    }
-
-    setFormData((prev) => {
-      return (
-        {...prev, educations: [...educationsArray]}
-      )
-    })
-      
-    localStorage.setItem('educations', [JSON.stringify(educationsArray)])
-  }
-
-
-//   handle the submit to validate inputs and set errors
-const handleSubmit = (e) => {
-    e.preventDefault()
-
-    educations.forEach((education, index) => {
-      const { degree, due_date,  description, institute } = education
-      const valid = Object.values(education)
-
-      const validOtherForms = valid.every((str) => str === "" || str === undefined)
-
-
-      if (index === 0 || !validOtherForms) {
-
-        if (degree === "") {
-          let newArr = [...errorsArr]
-          newArr[index].degreeErr = true
-          setErrorsArr(newArr)
-          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].degreeErr = false
-          setErrorsArr(newArr)
-          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        }
-
-        if (due_date.length < 2) {
-          let newArr = [...errorsArr]
-          newArr[index].due_dateErr = true
-          setErrorsArr(newArr)
-          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].due_dateErr = false
-          setErrorsArr(newArr)
-          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        }
+    const handleChangeInput = (index, event) => {
+        const name = event.target.name
+        const value = event.target.value
+        let data = [...educationsArray]
         
-        if (institute.trim().length < 2) {
-          let newArr = [...errorsArr]
-          newArr[index].instituteErr = true
-          setErrorsArr(newArr)
-          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].instituteErr = false
-          setErrorsArr(newArr)
-          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        }
-        
-        if (description.trim().length < 2) {
-          let newArr = [...errorsArr]
-          newArr[index].descriptionErr = true
-          setErrorsArr(newArr)
-          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        } else {
-          let newArr = [...errorsArr]
-          newArr[index].descriptionErr = false
-          setErrorsArr(newArr)
-          localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        }
-      } else if ((index !== 0 && validOtherForms)) {
-        let newArr = [...errorsArr]
-        newArr[index] = {
-              "instituteErr": false,
-              "degreeErr": false,
-              "due_dateErr": false,
-              "descriptionErr": false,
+        if (name === "degree") {
+        let id;
+        optionValues.forEach((item) => {
+            if (item.title === event.target.value) {
+            id = item.id
             }
-        setErrorsArr(newArr)
-        localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-      }
-    })
-
-    let validArray = []
-
-    for (let i = 0; i < errorsArr.length; i++) {
-      const objToArray = Object.values(errorsArr[i])
-        for (let j = 0; j < objToArray.length; j++) {
-          validArray.push(objToArray[j])
+        })
+        data[index].degree_id = id
+        data[index].degree = value
+        } else {
+        data[index][name] = value
         }
-    }
-    
-    setFormValidArr([...validArray])
-    
 
-      
-      navigate('/result_resume')
+        setFormData((prev) => {
+        return (
+            {...prev, educations: [...educationsArray]}
+        )
+        })
+        
+        localStorage.setItem('educations', [JSON.stringify(educationsArray)])
+    }
+
+
+    //   handle the submit to validate inputs and set errors
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        educations.forEach((education, index) => {
+        const { degree, due_date,  description, institute } = education
+        const valid = Object.values(education)
+
+        const validOtherForms = valid.every((str) => str === "" || str === undefined)
+
+
+        if (index === 0 || !validOtherForms) {
+
+            if (degree === "") {
+            let newArr = [...errorsArr]
+            newArr[index].degreeErr = true
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].degreeErr = false
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+            }
+
+            if (due_date.length < 2) {
+            let newArr = [...errorsArr]
+            newArr[index].due_dateErr = true
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].due_dateErr = false
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+            }
+            
+            if (institute.trim().length < 2) {
+            let newArr = [...errorsArr]
+            newArr[index].instituteErr = true
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].instituteErr = false
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+            }
+            
+            if (description.trim().length < 2) {
+            let newArr = [...errorsArr]
+            newArr[index].descriptionErr = true
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+            } else {
+            let newArr = [...errorsArr]
+            newArr[index].descriptionErr = false
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+            }
+        } else if ((index !== 0 && validOtherForms)) {
+            let newArr = [...errorsArr]
+            newArr[index] = {
+                "instituteErr": false,
+                "degreeErr": false,
+                "due_dateErr": false,
+                "descriptionErr": false,
+                }
+            setErrorsArr(newArr)
+            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+        }
+        })
+
+        let validArray = []
+
+        for (let i = 0; i < errorsArr.length; i++) {
+        const objToArray = Object.values(errorsArr[i])
+            for (let j = 0; j < objToArray.length; j++) {
+            validArray.push(objToArray[j])
+            }
+        }
+        
+        setFormValidArr([...validArray])
+        if (!formValidArr.includes(true) && formValidArr.length > 0) {
+
+            // filter data not to include empty values
+            let validEducationData = [...educations]
+            validEducationData = validEducationData.filter(item => item.institute !== "")
+            localStorage.setItem('educations', JSON.stringify(validEducationData))
+
+            // console.log({name, surname, email, phone_number, about_me, experiences, educations, image: validImg})
+            // console.log(image)
+
+            // console.log(JSON.stringify({name, surname, email, phone_number, about_me, experiences, educations, image: validImg}))
+
+            
+            const postData = async () => {
+
+                try {
+                const res = await fetch("https://resume.redberryinternship.ge/api/cvs", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "multiple/form-data",
+                    },
+                    body: JSON.stringify({name, surname, email, phone_number, about_me, experiences, educations, image: validImg})
+
+
+                })
+                const data = await res.json()
+
+                console.log(data)
+
+                } catch(err) {
+                console.log(err)
+
+                }
+                
+
+                // await fetch("https://resume.redberryinternship.ge/api/cvs", {
+                //   method: "POST",
+                //   headers: { "Content-Type": "application/json", "Accept": "application/json"},
+                //   body: JSON.stringify({name, surname, email, phone_number, about_me, experiences, educations, image: validImg})
+                // })
+                // .then((res) => console.log(res))
+                // .catch(err => console.log(err))
+            }
+
+            postData()
+
+            
+            navigate('/result_resume')
+        }
     }
 
   
