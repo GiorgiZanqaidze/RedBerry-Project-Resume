@@ -224,6 +224,17 @@ const handleSubmit = (e) => {
         localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
       }
     })
+
+    let validArray = []
+
+    for (let i = 0; i < errorsArr.length; i++) {
+      const objToArray = Object.values(errorsArr[i])
+        for (let j = 0; j < objToArray.length; j++) {
+          validArray.push(objToArray[j])
+        }
+    }
+    
+    setFormValidArr([...validArray])
     
 
       
