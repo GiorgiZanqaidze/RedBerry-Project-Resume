@@ -18,6 +18,24 @@ export const ResumeThirdPage = () => {
   const [validImg, setValidImg] = useState(null)
 
   const imageName = localStorage.getItem('image-name')
+
+   const navigate = useNavigate()
+  const ToLandingPage = () => {
+
+      localStorage.clear()
+      
+      setFormData({
+          "name": "",
+          "surname": "",
+          "email": "",
+          "phone_number": "",
+          "image": "",
+          "about_me": "",
+          "experiences": [],
+          "educations": []
+        })
+        navigate('/')
+  }
   
   React.useEffect(() => {
     fetch(image)
