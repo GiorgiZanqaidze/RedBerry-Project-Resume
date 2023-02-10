@@ -115,6 +115,13 @@ export const ResumeSecondPage = () => {
         localStorage.setItem('experiences', [JSON.stringify(experienceArray)])
     }
 
+    const handleSubmit = (e) => {
+    e.preventDefault()
+
+
+    
+    }
+
 
   
   return (
