@@ -5,6 +5,8 @@ import { useNavigate} from 'react-router-dom'
 import { useGlobalContext } from '../context'
 import '../css/secondPage.css'
 
+import {showIcon} from "../functions/showIcon"
+
 
 
 export const ResumeSecondPage = () => {
@@ -246,28 +248,33 @@ export const ResumeSecondPage = () => {
                 <div className='form-controller grit-item width-100'>
                     <label htmlFor='position' >თანამდებობა</label>
                     <input type="text" name='position' id="position" placeholder='თანამდებობა' className={`${errorsArr[index] && errorsArr[index].positionErr && "error-input"} width-100`} onChange={(event) => handleChangeInput(index, event)} value={position}/>
+                    {showIcon(errorsArr[index].positionErr)}
                     <p className='alert'>მინიმუმ 2 სიმბოლო</p>
                 </div>
                 <div className='form-controller grit-item width-100'>
                     <label htmlFor='employer' >დამსაქმებელი</label>
                     <input type="text" name='employer' id="employer" placeholder='დამსაქმებელი' className={`${errorsArr[index] && errorsArr[index].employerErr && "error-input"} width-100`} onChange={(event) => handleChangeInput(index, event)} value={employer}/>
+                    {showIcon(errorsArr[index].employerErr)}
                     <p className='alert'>მინიმუმ 2 სიმბოლო</p>
                 </div>
                 <div className='two-input-container'>
                   <div className='form-controller'>
                       <label htmlFor='start_date' >დაწყების რიცხვი</label>
                       <input type="date" name='start_date' id="start_date" placeholder='მუმლაძე' onChange={(event) => handleChangeInput(index, event)} value={start_date} className={`${errorsArr[index] && errorsArr[index].start_dateErr && "error-input"}`}/>
+                      {showIcon(errorsArr[index].start_dateErr)}
                       <p className='alert'></p>
                   </div>
                   <div className='form-controller'>
                       <label htmlFor='due_date' >დამთავრების რიცხვი</label>
                       <input type="date" name='due_date' id="due_date" placeholder='მუმლაძე' onChange={(event) => handleChangeInput(index, event)} value={due_date} className={`${errorsArr[index] && errorsArr[index].due_dateErr && "error-input"}`}/>
+                      {showIcon(errorsArr[index].due_dateErr)}
                       <p className='alert'></p>
                   </div>
                 </div>
                 <div className='form-controller grit-item'>
                     <label htmlFor='description' >აღწერა</label>
                     <textarea style={{width: "600px", maxWidth: "600px"}}  id='description' name='description' type="text" placeholder='როლი თანამდებობაზე და ზოგადი აღწერა' onChange={(event) => handleChangeInput(index, event)} value={description} className={`${errorsArr[index] && errorsArr[index].descriptionErr && "error-input"}`}/>
+                    {showIcon(errorsArr[index].descriptionErr)}
                 </div>
               </div>
             )

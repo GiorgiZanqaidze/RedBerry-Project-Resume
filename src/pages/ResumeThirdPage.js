@@ -13,7 +13,6 @@ export const ResumeThirdPage = () => {
   const { setFormData, formData} = useGlobalContext()
   const {name, surname, email, phone_number, about_me, experiences, educations, image} = formData
 
-  const [formValidArr, setFormValidArr] = useState([])
 
   const [validImg, setValidImg] = useState(null)
 
@@ -242,7 +241,6 @@ export const ResumeThirdPage = () => {
             }
         }
         
-        setFormValidArr([...validArray])
         if (!validArray.includes(true) && validArray.length > 0) {
 
             // filter data not to include empty values
