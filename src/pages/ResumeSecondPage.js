@@ -211,7 +211,7 @@ export const ResumeSecondPage = () => {
 
   // navigate
   React.useEffect(() => {
-    if (!formValidArr.includes(true) && formValidArr.length > 0) {
+    if (!formValidArr.includes(true) && !formValidArr.includes(null) && formValidArr.length > 0) {
 
       // filter data not to include empty values
       let validData = [...experiences]

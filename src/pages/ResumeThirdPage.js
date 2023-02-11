@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Vector from "../images/Prev-logo.png"
 import { ResumeBuilder } from "../components/ResumeBuilder"
 import { useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../context'
 import axios from 'axios';
+
+import {showIcon} from "../functions/showIcon"
 
 
 
@@ -15,6 +17,7 @@ export const ResumeThirdPage = () => {
 
 
   const [validImg, setValidImg] = useState(null)
+  const [isValidArr, setIsValidArr] = useState([])
 
   const imageName = localStorage.getItem('image-name')
 
@@ -240,8 +243,13 @@ export const ResumeThirdPage = () => {
             validArray.push(objToArray[j])
             }
         }
+        setIsValidArr(validArray)
+
+        console.log(isValidArr)
+
+
         
-        if (!validArray.includes(true) && validArray.length > 0) {
+        if (!validArray.includes(true) && !validArray.includes(null) &&  validArray.length > 0) {
 
             // filter data not to include empty values
             let validEducationData = [...educations]
@@ -280,9 +288,15 @@ export const ResumeThirdPage = () => {
             postData()
 
             
-            navigate('/result_resume')
+            // navigate('/result_resume')
         }
     }
+
+    useEffect(() => {
+      
+    }, [])
+
+
 
   
   
@@ -309,6 +323,7 @@ export const ResumeThirdPage = () => {
                 <div className='form-controller grit-item width-100'>
                     <label htmlFor='institute' >სასწავლებელი</label>
                     <input type="text" name='institute' id="institute" placeholder='სასწავლებელი' className={`${errorsArr[index] && errorsArr[index].instituteErr && "error-input"} width-100`} onChange={(event) => handleChangeInput(index, event)} value={institute}/>
+                    {showIcon(errorsArr[index].instituteErr)}
                     <p className='alert'>მინიმუმ 2 სიმბოლო</p>
                 </div>
                 <div className='two-input-container'>
