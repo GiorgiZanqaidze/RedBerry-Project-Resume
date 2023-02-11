@@ -16,6 +16,15 @@
   --bg-dark-blue:#6B40E3;
 
 }
+/* font families */
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("../fonts/HelveticaNeue-01.ttf");
+}
+@font-face {
+  font-family: "HelveticaNeue-Bold-02";
+  src: url("../fonts/HelveticaNeue-Bold-02.ttf");
+}
 
 
 /* global variables */
@@ -70,6 +79,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "HelveticaNeue";
 }
 
 textarea {
