@@ -88,18 +88,9 @@ export const ResumeFirstPage = () => {
       // if input type is file
       if (name === "image") {
           const fileUrl = e.target.files[0];
-          // setImage2(fileUrl)
           
           const fr = new FileReader()
-        //   console.log(fileUrl)
-
-          // var data=(reader.result).split(',')[1];
-          // var binaryBlob = atob(data);
-          // console.log('Encoded Binary File String:', binaryBlob);
-          
-
-          // console.log(JSON.parse(localStorage.getItem(('image-file'))))
-          localStorage.setItem("image-name", fileUrl.name)
+        
 
           fr.addEventListener('load', () => {
             const url = fr.result

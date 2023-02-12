@@ -36,8 +36,23 @@ export const ResumeSecondPage = () => {
     // navigations ************** ^
 
 
-    const { setFormData, formData} = useGlobalContext()
-    const {experiences} = formData
+    const { setFormData} = useGlobalContext()
+
+    // experiences from local storage
+    let experiences;
+    if (JSON.parse(localStorage.getItem(('experiences'))) === null) {
+        experiences = [
+            {
+                "position": "",
+                "employer": "",
+                "start_date": "",
+                "due_date": "",
+                "description": ""
+            }
+        ]
+    } else {
+        experiences = JSON.parse(localStorage.getItem(('experiences')))
+    }
 
     // errors array from local storage
     let errors;
@@ -133,50 +148,60 @@ export const ResumeSecondPage = () => {
             let newArr = [...errorsArr]
             newArr[index].positionErr = true
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             } else {
             let newArr = [...errorsArr]
             newArr[index].positionErr = false
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             }
 
             if (employer.trim().length < 2) {
             let newArr = [...errorsArr]
             newArr[index].employerErr = true
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             } else {
             let newArr = [...errorsArr]
             newArr[index].employerErr = false
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             }
             
             if (!start_date) {
             let newArr = [...errorsArr]
             newArr[index].start_dateErr = true
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             } else {
             let newArr = [...errorsArr]
             newArr[index].start_dateErr = false
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             }
             
             if (!due_date) {
             let newArr = [...errorsArr]
             newArr[index].due_dateErr = true
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             } else {
             let newArr = [...errorsArr]
             newArr[index].due_dateErr = false
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             }
             
             if (description.trim().length < 2) {
             let newArr = [...errorsArr]
             newArr[index].descriptionErr = true
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             } else {
             let newArr = [...errorsArr]
             newArr[index].descriptionErr = false
             setErrorsArr(newArr)
+            localStorage.setItem('experiences-errors', JSON.stringify(errorsArr))
             }
         } else if ((index !== 0 && validOtherForms)) {
             let newArr = [...errorsArr]
@@ -211,17 +236,19 @@ export const ResumeSecondPage = () => {
 
   // navigate
   React.useEffect(() => {
-    if (!formValidArr.includes(true) && !formValidArr.includes(null) && formValidArr.length > 0) {
+    if (!formValidArr.includes(true)  && formValidArr.length > 0) {
 
       // filter data not to include empty values
       let validData = [...experiences]
       validData = validData.filter(item => item.position !== "")
       localStorage.setItem('experiences', JSON.stringify(validData))
+
+      localStorage.removeItem('experiences-errors')
       
       navigate('/third_page')
     } 
 
-  }, [formValidArr, navigate, experiences, setExperienceArray])
+  }, [formValidArr, navigate, experiences, setExperienceArray, errorsArr])
 
 
 

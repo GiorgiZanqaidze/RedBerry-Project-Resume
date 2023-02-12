@@ -13,10 +13,25 @@ import {showIcon} from "../functions/showIcon"
 export const ResumeThirdPage = () => {
 
   const experiences = JSON.parse(localStorage.getItem("experiences"))
+  // educations from local storage
+    let educations;
+    if (JSON.parse(localStorage.getItem(('educations'))) === null) {
+        educations = [
+            {
+              "institute": "",
+              "degree": "",
+              "due_date": "",
+              "description": "",
+              "degree_id": ""
+            }
+        ]
+    } else {
+        educations = JSON.parse(localStorage.getItem(('educations')))
+    }
 
   
   const { setFormData, formData} = useGlobalContext()
-  const {name, surname, email, phone_number, about_me, educations, image} = formData
+  const {name, surname, email, phone_number, about_me, image} = formData
 
 
   const [validImg, setValidImg] = useState(null)
@@ -46,6 +61,20 @@ export const ResumeThirdPage = () => {
     e.preventDefault()
     navigate('/second_page')
   }
+
+  let errors;
+  if (JSON.parse(localStorage.getItem(('educations-errors')))) {
+    errors = JSON.parse(localStorage.getItem(('educations-errors')))
+  } else {
+    errors = [{
+              "instituteErr": null,
+              "degreeErr": null,
+              "due_dateErr": null,
+              "descriptionErr": null,
+            }]
+  }
+
+
   //   navigations ********** ^^
   
   React.useEffect(() => {
@@ -60,17 +89,7 @@ export const ResumeThirdPage = () => {
     }, [image, imageName])
 
 
-  let errors;
-  if (JSON.parse(localStorage.getItem(('educations-errors')))) {
-    errors = JSON.parse(localStorage.getItem(('educations-errors')))
-  } else {
-    errors = [{
-              "instituteErr": null,
-              "degreeErr": null,
-              "due_dateErr": null,
-              "descriptionErr": null,
-            }]
-  }
+  
 
   const [errorsArr, setErrorsArr] = useState(errors)
 
@@ -182,40 +201,48 @@ export const ResumeThirdPage = () => {
               let newArr = [...errorsArr]
               newArr[index].degreeErr = true
               setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
               } else {
               let newArr = [...errorsArr]
               newArr[index].degreeErr = false
               setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
               }
 
               if (due_date.length < 2) {
               let newArr = [...errorsArr]
               newArr[index].due_dateErr = true
               setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
               } else {
               let newArr = [...errorsArr]
               newArr[index].due_dateErr = false
               setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
               }
               
               if (institute.trim().length < 2) {
               let newArr = [...errorsArr]
               newArr[index].instituteErr = true
               setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
               } else {
               let newArr = [...errorsArr]
               newArr[index].instituteErr = false
               setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
               }
               
               if (description.trim().length < 2) {
               let newArr = [...errorsArr]
               newArr[index].descriptionErr = true
               setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
               } else {
               let newArr = [...errorsArr]
               newArr[index].descriptionErr = false
               setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
               }
           } else if ((index !== 0 && validOtherForms)) {
               let newArr = [...errorsArr]
@@ -276,7 +303,7 @@ export const ResumeThirdPage = () => {
             postData()
 
             
-            // navigate('/result_resume')
+            navigate('/result_resume')
         }
     }
 

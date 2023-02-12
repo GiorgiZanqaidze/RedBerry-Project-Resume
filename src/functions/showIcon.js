@@ -7,5 +7,7 @@ export const showIcon = (value) => {
       return <img src={ErrorIcon} alt='error' className="show-error-icon error-icon" />
     } else if (value === false) {
       return <img src={ValidIcon} alt='error' className="show-error-icon error-icon" />
+    } else if (value === null) {
+      return 
     }
   }
