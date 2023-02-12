@@ -78,14 +78,24 @@ export const ResumeThirdPage = () => {
   //   navigations ********** ^^
   
   React.useEffect(() => {
-      fetch(image)
-      .then((res) => res.blob())
-      .then((blob) => {
-          let newFile= new File([blob], imageName, { type: "image.jpg" });
+    // turn base64 string to blob file
 
-          setValidImg(newFile)
+      function dataUrlToBlob(dataUrl) {
+            const parts = dataUrl.split(";base64,");
+            const contentType = parts[0].split(":")[1];
+            const byteCharacters = atob(parts[1]);
+            const byteArrays = [];
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteArrays.push(byteCharacters.charCodeAt(i));
+            }
+            const byteArray = new Uint8Array(byteArrays);
+            return new Blob([byteArray], { type: contentType });
+        }
 
-        })
+      const dataURL = image;
+            const blob = dataUrlToBlob(dataURL);
+            const file = new File([blob], "resumeImage", { type: "image/png" });
+            setValidImg(file);
     }, [image, imageName])
 
 
@@ -275,37 +285,20 @@ export const ResumeThirdPage = () => {
             localStorage.setItem('educations', JSON.stringify(validEducationData))
             localStorage.setItem("trueResultResume", JSON.stringify(true))
 
+
+            axios.post('https://resume.redberryinternship.ge/api/cvs', {name, surname, email, phone_number, about_me, experiences, educations: validEducationData, image: validImg}, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            }).then(res => {
+              if(res.status === 201) {
+                localStorage.setItem("data", JSON.stringify(res.data))
+                navigate('/result_resume')
+                window.location.reload()
+              }
+            })
+            .catch(err => console.log(err))
             
-            
-            const postData = async () => {
-
-                try {
-                const res = await fetch("https://resume.redberryinternship.ge/api/cvs", {
-                    method: "POST",
-                    headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                    },
-                    body: JSON.stringify({name, surname, email, phone_number, about_me, experiences, educations: validEducationData, image: validImg})
-
-
-                })
-                const data = await res.json()
-
-                console.log(data)
-
-                } catch(err) {
-                console.log(err)
-
-                }
-                
-            }
-
-            postData()
-
-            
-            navigate('/result_resume')
-            window.location.reload()
         }
     }
 
