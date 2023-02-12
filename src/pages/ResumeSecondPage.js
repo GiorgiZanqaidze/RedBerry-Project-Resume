@@ -121,10 +121,10 @@ export const ResumeSecondPage = () => {
         e.preventDefault()
 
         experienceArray.forEach((experience, index) => {
-        const {position, employer, start_date, due_date, description} = experience
-        const valid = Object.values(experience)
-
-        const validOtherForms = valid.every((str) => str === "")
+          const {position, employer, start_date, due_date, description} = experience
+          const valid = Object.values(experience)
+          
+          const validOtherForms = valid.every((str) => str === "")
 
 
         if (index === 0 || !validOtherForms) {
@@ -222,6 +222,7 @@ export const ResumeSecondPage = () => {
     } 
 
   }, [formValidArr, navigate, experiences, setExperienceArray])
+
 
 
 

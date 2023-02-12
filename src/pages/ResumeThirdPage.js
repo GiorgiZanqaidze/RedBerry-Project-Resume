@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Vector from "../images/Prev-logo.png"
 import { ResumeBuilder } from "../components/ResumeBuilder"
 import { useNavigate } from 'react-router-dom'
@@ -11,13 +11,15 @@ import {showIcon} from "../functions/showIcon"
 
 
 export const ResumeThirdPage = () => {
+
+  const experiences = JSON.parse(localStorage.getItem("experiences"))
+
   
   const { setFormData, formData} = useGlobalContext()
-  const {name, surname, email, phone_number, about_me, experiences, educations, image} = formData
+  const {name, surname, email, phone_number, about_me, educations, image} = formData
 
 
   const [validImg, setValidImg] = useState(null)
-  const [isValidArr, setIsValidArr] = useState([])
 
   const imageName = localStorage.getItem('image-name')
 
@@ -55,7 +57,7 @@ export const ResumeThirdPage = () => {
           setValidImg(newFile)
 
         })
-    }, [])
+    }, [image, imageName])
 
 
   let errors;
@@ -165,74 +167,67 @@ export const ResumeThirdPage = () => {
     //   handle the submit to validate inputs and set errors
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        
         educations.forEach((education, index) => {
-        const { degree, due_date,  description, institute } = education
-        const valid = Object.values(education)
+          const { degree, due_date,  description, institute } = education
+          const valid = Object.values(education)
 
-        const validOtherForms = valid.every((str) => str === "" || str === undefined)
+          const validOtherForms = valid.every((str) => str === "" || str === undefined) 
 
 
-        if (index === 0 || !validOtherForms) {
 
-            if (degree === "") {
-            let newArr = [...errorsArr]
-            newArr[index].degreeErr = true
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-            } else {
-            let newArr = [...errorsArr]
-            newArr[index].degreeErr = false
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-            }
+          if (index === 0 || !validOtherForms) {
 
-            if (due_date.length < 2) {
-            let newArr = [...errorsArr]
-            newArr[index].due_dateErr = true
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-            } else {
-            let newArr = [...errorsArr]
-            newArr[index].due_dateErr = false
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-            }
-            
-            if (institute.trim().length < 2) {
-            let newArr = [...errorsArr]
-            newArr[index].instituteErr = true
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-            } else {
-            let newArr = [...errorsArr]
-            newArr[index].instituteErr = false
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-            }
-            
-            if (description.trim().length < 2) {
-            let newArr = [...errorsArr]
-            newArr[index].descriptionErr = true
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-            } else {
-            let newArr = [...errorsArr]
-            newArr[index].descriptionErr = false
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-            }
-        } else if ((index !== 0 && validOtherForms)) {
-            let newArr = [...errorsArr]
-            newArr[index] = {
-                "instituteErr": false,
-                "degreeErr": false,
-                "due_dateErr": false,
-                "descriptionErr": false,
-                }
-            setErrorsArr(newArr)
-            localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
-        }
+              if (degree === "") {
+              let newArr = [...errorsArr]
+              newArr[index].degreeErr = true
+              setErrorsArr(newArr)
+              } else {
+              let newArr = [...errorsArr]
+              newArr[index].degreeErr = false
+              setErrorsArr(newArr)
+              }
+
+              if (due_date.length < 2) {
+              let newArr = [...errorsArr]
+              newArr[index].due_dateErr = true
+              setErrorsArr(newArr)
+              } else {
+              let newArr = [...errorsArr]
+              newArr[index].due_dateErr = false
+              setErrorsArr(newArr)
+              }
+              
+              if (institute.trim().length < 2) {
+              let newArr = [...errorsArr]
+              newArr[index].instituteErr = true
+              setErrorsArr(newArr)
+              } else {
+              let newArr = [...errorsArr]
+              newArr[index].instituteErr = false
+              setErrorsArr(newArr)
+              }
+              
+              if (description.trim().length < 2) {
+              let newArr = [...errorsArr]
+              newArr[index].descriptionErr = true
+              setErrorsArr(newArr)
+              } else {
+              let newArr = [...errorsArr]
+              newArr[index].descriptionErr = false
+              setErrorsArr(newArr)
+              }
+          } else if ((index !== 0 && validOtherForms)) {
+              let newArr = [...errorsArr]
+              newArr[index] = {
+                  "instituteErr": false,
+                  "degreeErr": false,
+                  "due_dateErr": false,
+                  "descriptionErr": false,
+                  }
+              setErrorsArr(newArr)
+              localStorage.setItem('educations-errors', JSON.stringify(errorsArr))
+          }
         })
 
         let validArray = []
@@ -243,10 +238,6 @@ export const ResumeThirdPage = () => {
             validArray.push(objToArray[j])
             }
         }
-        setIsValidArr(validArray)
-
-        console.log(isValidArr)
-
 
         
         if (!validArray.includes(true) && !validArray.includes(null) &&  validArray.length > 0) {
@@ -256,11 +247,7 @@ export const ResumeThirdPage = () => {
             validEducationData = validEducationData.filter(item => item.institute !== "")
             localStorage.setItem('educations', JSON.stringify(validEducationData))
 
-            // console.log({name, surname, email, phone_number, about_me, experiences, educations, image: validImg})
-            // console.log(image)
-
-            // console.log(JSON.stringify({name, surname, email, phone_number, about_me, experiences, educations, image: validImg}))
-
+            
             
             const postData = async () => {
 
@@ -268,9 +255,10 @@ export const ResumeThirdPage = () => {
                 const res = await fetch("https://resume.redberryinternship.ge/api/cvs", {
                     method: "POST",
                     headers: {
-                    "Content-Type": "multiple/form-data",
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                     },
-                    body: JSON.stringify({name, surname, email, phone_number, about_me, experiences, educations, image: validImg})
+                    body: JSON.stringify({name, surname, email, phone_number, about_me, experiences, educations: validEducationData, image: validImg})
 
 
                 })
@@ -292,9 +280,6 @@ export const ResumeThirdPage = () => {
         }
     }
 
-    useEffect(() => {
-      
-    }, [])
 
 
 
