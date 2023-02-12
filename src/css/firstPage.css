@@ -73,4 +73,5 @@ input[type=text] {
     letter-spacing: 0.08em;
     border: none;
     padding: 10px 20px;
+    margin-right: 20px;
 }

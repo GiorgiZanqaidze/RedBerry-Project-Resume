@@ -320,16 +320,19 @@ export const ResumeThirdPage = () => {
                         return <option value={option.title} key={index} >{option.title}</option>
                       })}
                     </select>
+                    {showIcon(errorsArr[index].degreeErr)}
                   </div>
                   <div className='form-controller'>
                       <label htmlFor='due_date' >დამთავრების რიცხვი</label>
                       <input type="date" name='due_date' id="due_date"  onChange={(event) => handleChangeInput(index, event)} value={due_date} className={`${errorsArr[index] && errorsArr[index].due_dateErr && "error-input"} width-100`}/>
+                      {showIcon(errorsArr[index].due_dateErr)}
                       <p className='alert'></p>
                   </div>
                 </div>
                 <div className='form-controller grit-item'>
                     <label htmlFor='description' >აღწერა</label>
-                    <textarea style={{width: "750px", maxWidth: "750px"}} id='description' name='description' type="text" placeholder='როლი თანამდებობაზე და ზოგადი აღწერა' onChange={(event) => handleChangeInput(index, event)} value={description} className={`${errorsArr[index] && errorsArr[index].descriptionErr && "error-input"}`}/>
+                    <textarea style={{width: "750px", maxWidth: "620px"}} id='description' name='description' type="text" placeholder='როლი თანამდებობაზე და ზოგადი აღწერა' onChange={(event) => handleChangeInput(index, event)} value={description} className={`${errorsArr[index] && errorsArr[index].descriptionErr && "error-input"}`}/>
+                    {showIcon(errorsArr[index].descriptionErr)}
                 </div>
               </div>
             )
