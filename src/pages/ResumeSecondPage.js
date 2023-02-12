@@ -244,7 +244,7 @@ export const ResumeSecondPage = () => {
       validData = validData.filter(item => item.position !== "")
       localStorage.setItem('experiences', JSON.stringify(validData))
 
-      // localStorage.removeItem('experiences-errors')
+      localStorage.setItem("trueThirdPage", JSON.stringify(true))
       
       navigate('/third_page')
     } 
