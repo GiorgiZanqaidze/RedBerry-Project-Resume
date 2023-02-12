@@ -247,6 +247,7 @@ export const ResumeSecondPage = () => {
       localStorage.setItem("trueThirdPage", JSON.stringify(true))
       
       navigate('/third_page')
+      window.location.reload()
     } 
 
   }, [formValidArr, navigate, experiences, setExperienceArray, errorsArr])

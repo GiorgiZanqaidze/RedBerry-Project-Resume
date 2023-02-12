@@ -117,6 +117,7 @@ export const ResumeFirstPage = () => {
       if (!Object.values(errorsObj).includes(true) && !Object.values(errorsObj).includes(null)) {
         localStorage.setItem("trueSecondPage", JSON.stringify(true))
         navigate('/second_page')
+        window.location.reload()
       }
   }, [errorsObj, navigate])
 

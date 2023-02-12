@@ -273,6 +273,7 @@ export const ResumeThirdPage = () => {
             let validEducationData = [...educations]
             validEducationData = validEducationData.filter(item => item.institute !== "")
             localStorage.setItem('educations', JSON.stringify(validEducationData))
+            localStorage.setItem("trueResultResume", JSON.stringify(true))
 
             
             
@@ -304,6 +305,7 @@ export const ResumeThirdPage = () => {
 
             
             navigate('/result_resume')
+            window.location.reload()
         }
     }
 

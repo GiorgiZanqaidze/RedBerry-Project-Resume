@@ -12,9 +12,11 @@ import {Error} from './pages/Error'
 function App() {
 
   
+  
   const trueFirstPage = localStorage.getItem("trueFirstPage")
   const trueSecondPage = localStorage.getItem("trueSecondPage")
   const trueThirdPage = localStorage.getItem("trueThirdPage")
+  const trueResultResume = localStorage.getItem("trueResultResume")
 
 
   return (
@@ -25,7 +27,7 @@ function App() {
         {trueFirstPage && <Route path='first_page' element={<ResumeFirstPage />} />}
         {trueSecondPage && <Route path='second_page' element={<ResumeSecondPage />} />}
         {trueThirdPage && <Route path='third_page' element={<ResumeThirdPage />} />}
-        <Route path='result_resume' element={<ResultResume />} />
+        {trueResultResume && <Route path='result_resume' element={<ResultResume />} />}
         <Route path='*' element={<Error />} />
       </Routes>
     </Router>
