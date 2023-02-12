@@ -115,6 +115,7 @@ export const ResumeFirstPage = () => {
     
     React.useEffect(() => {
       if (!Object.values(errorsObj).includes(true) && !Object.values(errorsObj).includes(null)) {
+        localStorage.setItem("trueSecondPage", JSON.stringify(true))
         navigate('/second_page')
       }
   }, [errorsObj, navigate])
