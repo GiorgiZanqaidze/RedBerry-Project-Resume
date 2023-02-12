@@ -112,11 +112,11 @@ export const ResumeFirstPage = () => {
       })
     }
   
-
+    
     React.useEffect(() => {
-    if (!Object.values(errorsObj).includes(true) && !Object.values(errorsObj).includes(null)) {
-      navigate('/second_page')
-    }
+      if (!Object.values(errorsObj).includes(true) && !Object.values(errorsObj).includes(null)) {
+        navigate('/second_page')
+      }
   }, [errorsObj, navigate])
 
 

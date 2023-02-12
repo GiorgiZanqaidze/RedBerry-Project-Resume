@@ -68,6 +68,7 @@ export const ResumeSecondPage = () => {
         }]
     }
     const [errorsArr, setErrorsArr] = useState(errors)
+
     // errors array from local storage
 
     // default experience array
@@ -243,7 +244,7 @@ export const ResumeSecondPage = () => {
       validData = validData.filter(item => item.position !== "")
       localStorage.setItem('experiences', JSON.stringify(validData))
 
-      localStorage.removeItem('experiences-errors')
+      // localStorage.removeItem('experiences-errors')
       
       navigate('/third_page')
     } 
@@ -275,7 +276,7 @@ export const ResumeSecondPage = () => {
               <div key={index} className="form-container">
                 <div className='form-controller grit-item width-100'>
                     <label htmlFor='position' >თანამდებობა</label>
-                    <input type="text" name='position' id="position" placeholder='თანამდებობა' className={`${errorsArr[index] && errorsArr[index].positionErr && "error-input"} width-100`} onChange={(event) => handleChangeInput(index, event)} value={position}/>
+                    <input type="text" name='position' id="position" placeholder='თანამდებობა' className={`${errorsArr[index] && errorsArr[index].positionErr ? "error-input": ""} width-100`} onChange={(event) => handleChangeInput(index, event)} value={position}/>
                     {showIcon(errorsArr[index].positionErr)}
                     <p className='alert'>მინიმუმ 2 სიმბოლო</p>
                 </div>

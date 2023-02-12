@@ -4,10 +4,12 @@ import  Logo  from '../images/RedberryLogo.png'
 import  CircleLogo  from '../images/LOGO-40.png'
 
 export const Landing = () => {
+
   
   const navigate = useNavigate()
 
   const toFirstPage = () => {
+    localStorage.setItem("trueFirstPage", JSON.stringify(true))
     navigate('/first_page')
   }
 

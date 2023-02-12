@@ -6,13 +6,21 @@ import {ResumeThirdPage} from './pages/ResumeThirdPage'
 import {ResultResume} from './pages/ResultResume'
 import {Error} from './pages/Error'
 
+
+
+
 function App() {
+
+  
+  const page = localStorage.getItem("trueFirstPage")
+
+
   return (
     <div className="app">
        <Router>
       <Routes>
         <Route path='/' element={<Landing />} />
-        <Route path='first_page' element={<ResumeFirstPage />} />
+        {page && <Route path='first_page' element={<ResumeFirstPage />} />}
         <Route path='second_page' element={<ResumeSecondPage />} />
         <Route path='third_page' element={<ResumeThirdPage />} />
         <Route path='result_resume' element={<ResultResume />} />
