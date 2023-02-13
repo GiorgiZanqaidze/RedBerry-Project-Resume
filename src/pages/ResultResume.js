@@ -40,7 +40,6 @@ export const ResultResume = () => {
     const data = JSON.parse(localStorage.getItem('data'))
     
     const {name, surname, phone_number, email, about_me, experiences, educations, image} = data
-    console.log(name)
 
   return (
     <>

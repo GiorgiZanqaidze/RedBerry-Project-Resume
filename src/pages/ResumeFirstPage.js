@@ -128,7 +128,7 @@ export const ResumeFirstPage = () => {
       <section className='single-part-resume side-paddings bg-dark-white'>
         <header>
           <div>
-              <img src={Vector} alt="vector" onClick={() => ToLandingPage(navigate('/'))}/>
+              <img src={Vector} alt="vector" onClick={ToLandingPage}/>
           </div>
           <div className='info'>
             <h1>პირადი ინფო</h1>

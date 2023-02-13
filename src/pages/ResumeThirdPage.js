@@ -6,6 +6,7 @@ import { useGlobalContext } from '../context'
 import axios from 'axios';
 
 import {showIcon} from "../functions/showIcon"
+import {dataUrlToBlob} from '../functions/formatImg'
 
 
 
@@ -80,22 +81,10 @@ export const ResumeThirdPage = () => {
   React.useEffect(() => {
     // turn base64 string to blob file
 
-      function dataUrlToBlob(dataUrl) {
-            const parts = dataUrl.split(";base64,");
-            const contentType = parts[0].split(":")[1];
-            const byteCharacters = atob(parts[1]);
-            const byteArrays = [];
-            for (let i = 0; i < byteCharacters.length; i++) {
-                byteArrays.push(byteCharacters.charCodeAt(i));
-            }
-            const byteArray = new Uint8Array(byteArrays);
-            return new Blob([byteArray], { type: contentType });
-        }
-
       const dataURL = image;
-            const blob = dataUrlToBlob(dataURL);
-            const file = new File([blob], "resumeImage", { type: "image/png" });
-            setValidImg(file);
+      const blob = dataUrlToBlob(dataURL);
+      const file = new File([blob], "resumeImage", { type: "image/png" });
+      setValidImg(file);
     }, [image, imageName])
 
 
