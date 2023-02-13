@@ -91,13 +91,12 @@ export const ResumeFirstPage = () => {
           
           const fr = new FileReader()
         
-
           fr.addEventListener('load', () => {
             const url = fr.result
             localStorage.setItem('recent-image', url)
-
             value = url
           })
+          
           
           fr.readAsDataURL(fileUrl)
           value = URL.createObjectURL(fileUrl)
@@ -117,7 +116,7 @@ export const ResumeFirstPage = () => {
       if (!Object.values(errorsObj).includes(true) && !Object.values(errorsObj).includes(null)) {
         localStorage.setItem("trueSecondPage", JSON.stringify(true))
         navigate('/second_page')
-        window.location.reload()
+        // window.location.reload()
       }
   }, [errorsObj, navigate])
 
