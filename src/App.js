@@ -13,7 +13,6 @@ function App() {
 
   
   
-  const trueFirstPage = localStorage.getItem("trueFirstPage")
   const trueSecondPage = localStorage.getItem("trueSecondPage")
   const trueThirdPage = localStorage.getItem("trueThirdPage")
   const trueResultResume = localStorage.getItem("trueResultResume")
@@ -24,7 +23,7 @@ function App() {
        <Router>
       <Routes>
         <Route path='/' element={<Landing />} />
-        {trueFirstPage && <Route path='first_page' element={<ResumeFirstPage />} />}
+        <Route path='first_page' element={<ResumeFirstPage />} />
         {trueSecondPage && <Route path='second_page' element={<ResumeSecondPage />} />}
         {trueThirdPage && <Route path='third_page' element={<ResumeThirdPage />} />}
         {trueResultResume && <Route path='result_resume' element={<ResultResume />} />}
