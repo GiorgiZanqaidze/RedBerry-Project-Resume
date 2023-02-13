@@ -9,7 +9,6 @@ export const Landing = () => {
   const navigate = useNavigate()
 
   const toFirstPage = () => {
-    localStorage.setItem("trueFirstPage", JSON.stringify(true))
     navigate('/first_page')
     window.location.reload()
   }
