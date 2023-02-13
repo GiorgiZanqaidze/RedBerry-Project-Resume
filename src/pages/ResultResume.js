@@ -7,6 +7,7 @@ import "../css/resumeBuilder.css"
 import Logo1 from '../images/@-logo.png'
 import Logo2 from '../images/phone-logo.png'
 import LogoResume from '../images/LOGO-resume.png'
+import {formatPhoneNumber} from '../functions/formatPhoneNumber'
 
 export const ResultResume = () => {
 
@@ -66,7 +67,7 @@ export const ResultResume = () => {
           {phone_number &&
             <p>
               <img src={Logo2} alt="logo2"/>
-              {phone_number}
+              {formatPhoneNumber(phone_number)}
             </p>
           }
           {about_me &&

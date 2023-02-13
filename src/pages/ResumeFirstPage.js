@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import '../css/firstPage.css'
 import { useGlobalContext } from '../context'
 import "../css/app.css"
-
 import {showIcon} from "../functions/showIcon"
 
 export const ResumeFirstPage = () => {
@@ -56,7 +55,7 @@ export const ResumeFirstPage = () => {
     }
 
     // phone number validation
-    if (!/^((\+)9955[0-9]{8})$/.test(phone_number)) {
+    if (!/^((\+)9955[0-9]{8})$/.test(phone_number.split('').filter(str => str !== " ").join(''))) {
       setErrorsObj(prev => ({...prev, phone_number: true}))
     } else {
       setErrorsObj(prev => ({...prev, phone_number: false}))
@@ -102,6 +101,9 @@ export const ResumeFirstPage = () => {
           value = URL.createObjectURL(fileUrl)
 
       }   
+
+     
+
   
       setFormData((prev) => {
           return {
@@ -116,7 +118,7 @@ export const ResumeFirstPage = () => {
       if (!Object.values(errorsObj).includes(true) && !Object.values(errorsObj).includes(null)) {
         localStorage.setItem("trueSecondPage", JSON.stringify(true))
         navigate('/second_page')
-        // window.location.reload()
+        window.location.reload()
       }
   }, [errorsObj, navigate])
 

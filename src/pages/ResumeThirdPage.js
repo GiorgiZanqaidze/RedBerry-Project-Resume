@@ -275,7 +275,15 @@ export const ResumeThirdPage = () => {
             localStorage.setItem("trueResultResume", JSON.stringify(true))
 
 
-            axios.post('https://resume.redberryinternship.ge/api/cvs', {name, surname, email, phone_number, about_me, experiences, educations: validEducationData, image: validImg}, {
+            axios.post('https://resume.redberryinternship.ge/api/cvs', {
+              name,
+              surname,
+              email,
+              phone_number,
+              about_me,
+              experiences,
+              educations: validEducationData,
+              image: validImg}, {
               headers: {
                 'Content-Type': 'multipart/form-data',
               },

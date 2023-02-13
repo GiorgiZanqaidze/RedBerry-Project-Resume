@@ -4,8 +4,7 @@ import Logo1 from '../images/@-logo.png'
 import Logo2 from '../images/phone-logo.png'
 import LogoResume from '../images/LOGO-resume.png'
 import { useGlobalContext } from '../context'
-
-
+import {formatPhoneNumber} from '../functions/formatPhoneNumber'
 
 export const ResumeBuilder = () => {
   const {formData} = useGlobalContext()
@@ -13,6 +12,13 @@ export const ResumeBuilder = () => {
   const {name, surname, email, phone_number, image, about_me, experiences, educations} = formData
 
   const privateInfoBottomLine = name || surname || email || phone_number || image || about_me ? true : false
+
+
+
+
+
+  // console.log(val)
+  // console.log(val.split('').filter(str => str !== " ").join(''))
 
   return (
     <div className='center-div'>
@@ -28,7 +34,7 @@ export const ResumeBuilder = () => {
           {phone_number &&
             <p>
               <img src={Logo2} alt="logo2"/>
-              {phone_number}
+              {formatPhoneNumber(phone_number)}
             </p>
           }
           {about_me &&
