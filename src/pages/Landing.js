@@ -10,7 +10,6 @@ export const Landing = () => {
 
   const toFirstPage = () => {
     navigate('/first_page')
-    window.location.reload()
   }
 
   return (
